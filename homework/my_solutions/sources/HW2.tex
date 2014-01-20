@@ -1,0 +1,133 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+\geometry{margin=1in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+\usepackage{amsmath}
+\usepackage{amsfonts}
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Homework 2}
+\author{Alireza Shafaei\\78428133}
+%\date{} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+\section*{Problem 1}
+Let G(X) be the woman that is paired with man X by the Gale-Shapley proposal algorithm. Prove that there is no stable pairing P such that X prefers P(X) (his partner in pairing P) to G(X).\\
+\textbf{Proof.}
+Let's say there's a stable pairing $P$ such that $X$ prefers $P(X)$ to $G(X)$. This means $P(X)$ has to appear before $G(X)$ in $X$'s preference list. If so, according to the Gale-Shapley proposal algorithm, $X$ must've proposed to $P(X)$ before $G(X)$. Given that the final stable marriage of $X$ is $G(X)$, then there must exist a $Y$ such that $P(X)$ preferes to $X$, and $P(X)$ is the first available preference in $Y$'s list, resulting in a break up of $X$ and $P(X)$; thus no such stable marriage $P$ can exist.
+
+\section*{Problem 2}
+Prove that the expectation of a sum of random variables is the sum of the expectation of these random variables.\\
+\textbf{Proof.} I demonstrate this feature using two random variables. Through induction, it could be generalized for $n$ random variables.
+
+\begin{gather}
+\mathbb{E}[X+Y] = \sum_{\omega_1 \in \Omega} \sum_{\omega_2 \in \Omega} (X(\omega_1)+Y(\omega_2))\mathbb{P}(\omega_1,\omega_2) \\
+\Rightarrow \mathbb{E}[X+Y] = 	\sum_{\omega_1 \in \Omega}X(\omega_1) \sum_{\omega_2 \in \Omega}\mathbb{P}(\omega_1,\omega_2) +
+					\sum_{\omega_2 \in \Omega}Y(\omega_2) \sum_{\omega_1 \in \Omega}\mathbb{P}(\omega_1,\omega_2) \\
+\Rightarrow \mathbb{E}[X+Y] = 	\sum_{\omega_1 \in \Omega}X(\omega_1) \sum_{\omega_2 \in \Omega}\mathbb{P}(\omega_1|\omega_2)\mathbb{P}(\omega_2) +
+					\sum_{\omega_2 \in \Omega}Y(\omega_2) \sum_{\omega_1 \in \Omega}\mathbb{P}(\omega_2|\omega_1)\mathbb{P}(\omega_1)\\
+\Rightarrow \mathbb{E}[X+Y] = 	\sum_{\omega_1 \in \Omega}X(\omega_1) \mathbb{P}(\omega_1)+
+					\sum_{\omega_2 \in \Omega}Y(\omega_2) \mathbb{P}(\omega_2)\\
+\Rightarrow \mathbb{E}[X+Y] = 	\mathbb{E}[X]+\mathbb{E}[Y]
+\end{gather}
+
+\section*{Problem 3}
+ Prove that the expectation of a product of independent random variables is the product of the expectation of these random variables.\\
+\textbf{Proof.} I demonstrate this feature using two independent random variables. Through induction, it could be generalized for $n$ independent random variables.
+\begin{gather}
+\mathbb{E}[XY] = \sum_{\omega_1 \in \Omega} \sum_{\omega_2 \in \Omega} X(\omega_1)Y(\omega_2)\mathbb{P}(\omega_1,\omega_2) \\
+X \perp Y \Rightarrow \mathbb{E}[XY] = \sum_{\omega_1 \in \Omega} \sum_{\omega_2 \in \Omega} X(\omega_1)Y(\omega_2)\mathbb{P}(\omega_1)\mathbb{P}(\omega_2) \\
+\Rightarrow \mathbb{E}[XY] = \sum_{\omega_1 \in \Omega} X(\omega_1)\mathbb{P}(\omega_1)\sum_{\omega_2 \in \Omega} Y(\omega_2)\mathbb{P}(\omega_2) \\
+\Rightarrow \mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]
+\end{gather}
+
+\section*{Problem 4}
+Use the previous two results to prove that the variance of a sum of pairwise independent random variables is the sum of the variances of these random variables.\\
+\textbf{Proof.} I demonstrate this feature using two independent random variables. Through induction, it could be generalized for $n$ pairwise independent random variables.
+\begin{gather}
+Var[X+Y] = \mathbb{E}[(X+Y)^2] - (\mathbb{E}[X+Y])^2\\
+\Rightarrow Var[X+Y] = \mathbb{E}[X^2+Y^2+2YX] - (\mathbb{E}[X]+\mathbb{E}[Y])^2\\
+\Rightarrow Var[X+Y] = \mathbb{E}[X^2]+\mathbb{E}[Y^2]+\mathbb{E}[2YX] - (\mathbb{E}[X])^2-(\mathbb{E}[Y])^2-(2\mathbb{E}[X]\mathbb{E}[Y])\\
+\Rightarrow Var[X+Y] = \mathbb{E}[X^2]+\mathbb{E}[Y^2]+2\mathbb{E}[Y]\mathbb{E}[X] - (\mathbb{E}[X])^2-(\mathbb{E}[Y])^2-(2\mathbb{E}[X]\mathbb{E}[Y])\\
+\Rightarrow Var[X+Y] = \mathbb{E}[X^2]- (\mathbb{E}[X])^2+\mathbb{E}[Y^2]-(\mathbb{E}[Y])^2\\
+\Rightarrow Var[X+Y] = Var[X]+Var[Y]
+\end{gather}
+
+\section*{Problem 4}
+Suppose I have a sequence of $n$ different numbers. I reorder the sequence randomly (each ordering equally likely) and give you the numbers one at a time in this random order. You are interested in determining the maximum number in the sequence.
+
+\begin{itemize}
+	\item An obvious approach is to keep the maximum of the numbers given so far, updating this maximum as needed. What is the expected number of times you update the maximum (as a function of $n$)?\\
+\textbf{Answer.} Let's say we have seen $i$ numbers so far, the probability that $(i+1)_{th}$ number is the biggest in a series of $i+1$ numbers will be $\frac{1}{i+1}$, since the biggest number could be any of $i+1$ numbers. Let $X_i$ denote whether we updated upon seeing $i_{th}$ number. The expected value of updates will be calculated as follows:
+
+\begin{gather}
+\mathbb{E}[X_i] = 1.\frac{1}{i}+0.\frac{i-1}{i}=\frac{1}{i}\\
+Y = X_1+X_2+X_3+\ldots+X_n\\
+\mathbb{E}[Y]=\sum_{i=1}^{n}\mathbb{E}[X_i] = \sum_{i=1}^{n}\frac{1}{i} = H_n
+\end{gather}
+So the answer will be $H_n$.
+
+\item Suppose after you see each number, I ask ``Is this the maximum of all n numbers?'' If you say ``no'' then I give you the next number. If you say ``yes'' then you win if the number truly is the maximum number in the sequence, otherwise you lose.\\
+Describe an algorithm for you to follow that results in a probability of winning that is at least 1/4. Note that your algorithm knows n from the start.\\
+\textbf{Answer.} If we have seen $i$ numbers so far, it means there are $n-i$ numbers that we haven't seen. On updating max with $i_{th}$ number, the probability of $i_{th}$ number being  the biggest number will be $\frac{i}{n}$. Let's call probability of wining after update on $i_{th}$ number, $P_{i}$, we'd have:
+
+\begin{gather}
+	P_{i} = \frac{i}{n}\\
+	P_i \geq \frac{1}{4} \Rightarrow \frac{i}{n} \geq \frac{1}{4}\\
+	\Rightarrow i \geq \frac{n}{4}
+\end{gather}
+Meaning that after seeing at least $n/4$ numbers, if the maximum was updated, we should say yes. In other words, if an update on max occured after seeing at least $n/4$ numbers, we're at least $1/4$ sure that this is the biggest number.
+\end{itemize}
+
+\end{document}
